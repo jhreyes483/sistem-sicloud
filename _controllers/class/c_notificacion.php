@@ -20,7 +20,7 @@ class c_notificacion extends Controller {
          foreach ($r as $row) {
             switch ($row[4]) { // id_notificacion
                case 1: // Activar cuenta admin
-                 $ruta = 'admin/consulta';
+                 $ruta = 'admin/controlUsuarios';
                  $m    =  $row['nom_tipo'].' Id usuario: '. $row['descript'];
                  $id   =  $row['descript'];
                  $ac   =  'bId';
