@@ -324,7 +324,6 @@ class adminController extends Controller{
         if( $_POST['id'] ){
             $u      = $this->db->selectUsuarios($_POST['id']);
             $this->verificaResul($u);
-            Controller::ver($this->_view->datos);
         }else{
             $this->_view->datos = ['response_status' => 'error' , 'No ha ingresado usuario a editar'];
         }
