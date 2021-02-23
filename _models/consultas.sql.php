@@ -30,7 +30,6 @@ public function  verPagos($param){
    LEFT JOIN motivo_pago MP ON MP.id_motivo = P.fk_motivo
    WHERE fk_egreso ='.$param;
    ;
-  // echo $sql;die();
    $c = $this->db->prepare($sql);
    $c->execute();
    $r = $c->fetchAll();
@@ -117,8 +116,6 @@ public function verPagosT(){
       $insertar->bindValue(8, $d[7] );
       $insertar->bindValue(9, $d[8] );
       $insertar->bindValue(10, $d[9] );
-    //  }
-     // echo $pass_cifrado; die();
       return $insertar->execute();
    }
 
@@ -208,9 +205,6 @@ public function loginUsuarioModel($d){
    // $consulta->bindValue( ':pass',        $d[1] , PDO::PARAM_STR );
       $consulta->bindValue(':ID_acronimo',  $d[2], PDO::PARAM_STR  );
       $pass = $d[1];
-  // }
-  // echo $pass; die();
-
    $consulta->execute();
    $USER = $consulta->fetch(PDO::FETCH_ASSOC);
    if(($consulta->rowCount() > 0) && (password_verify($pass, $USER['pass']))){ 
@@ -330,7 +324,6 @@ public function loginUsuarioModel($d){
    //-------------------------------------------------------------------------------------------------------
    //METODO UPDATE USUARIO PDO MVC-------------------------(FALTA METODO API)-------------------------------
    public function actualizarDatosUsuario($id, $a){ 
-      ///echo '<pre>'; print_r($a); echo '</pre>';  echo '<pre>'; print_r($id); echo '</pre>';    die();
       $sql = "UPDATE usuario SET ID_us = ?, nom1 = ?, nom2 = ?, ape1 = ?, ape2 = ?, 
       fecha = ?, foto = ?, correo = ?, FK_tipo_doc = ?
       WHERE ID_us = ?";
@@ -1093,8 +1086,6 @@ public function eliminarErrorLog($id)
       $stm = $this->db->prepare($sql);
       $stm->execute();
       $result = $stm->fetchAll(); 
-      //echo $sql;
-      //die();
       return $result;
    }
 // Ver datos  usuario en factura
@@ -1455,8 +1446,6 @@ public function delteNotificacion($id){
          WHERE  P.ID_prod = '$id' 
          LIMIT 1
          ";
-
-         echo $sql;
       $stm = $this->db->prepare($sql);
       $stm->execute();
       $result = $stm->fetchAll();
@@ -2148,19 +2137,7 @@ public function eliminarTelefono($idg){
 
 
         
-          # Pasar en el mismo orden de los ?
 
-
-     /* if ($result = true) {
-          echo '<script>alert("inserto datos");</script>';
-         // $_SESSION['message'] = "Actualizacion exitosa";
-         // $_SESSION['color'] = "primary";
-      } else {
-          echo '<script>alert("no actualizo");</script>';
-         // $_SESSION['message'] = "Fallo actualizacion";
-         // $_SESSION['color'] = "danger";
-      }
-      header("location: ../forms/FormEmpresa.php"); */
 
 
 
