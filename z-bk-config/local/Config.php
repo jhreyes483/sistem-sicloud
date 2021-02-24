@@ -8,7 +8,7 @@ define("imgProducto", "ProductoSinImagen.png");
 
 
 //controlador por defecto de nuestra aplicacion
-define('BASE_URL', 'https://localhost/mvc/');  
+define('BASE_URL', 'https://localhost/sistem-sicloud/');  
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_LAYOUT', 'layout1');
 

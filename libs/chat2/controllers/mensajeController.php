@@ -22,13 +22,8 @@ $descrip = $_GET['mensaje'];
  $notificacion = new SQL();
 $a = [ $estado, $descrip, $nom_us , $FK_ms ];
 
-
-
 //die();
  $notificacion->insertMensaje($a);
-
-
-
 echo '<meta http-equiv="REFRESH" content="0;url=../index.php">';
 ?>
 

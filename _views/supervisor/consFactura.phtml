@@ -9,8 +9,8 @@
                 $id = "";
             }   ?>
             <form action="<?= BASE_URL ?>supervisor/consulta" method="post">
-                <div class="form-group"><label for="">Digite factura</label> 
-                <input type="text" id="txt1" value="<?= ( $_POST['f'] )?? ''; ?>" class="form-control" name="f"/>
+                <div class="form-group"><label for="">Digite número de factura</label> 
+                <input type="text" id="txt1" value="<?= ( $_POST['f'] )?? ''; ?>" class="form-control"  name="f"/>
                     <input class="btn btn-success btn-block" value="Buscar factura" type="submit">
                     <input type="hidden" name="accion" value="consFactura">
             </form>

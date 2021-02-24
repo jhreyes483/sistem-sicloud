@@ -26,8 +26,6 @@ class SQL
 */
     //Insertar mensaje--------------------------------------------------------------
     public function insertMensaje(array $d){
-        echo '<pre>';
-print_r($d);
         $sql = "INSERT into mensaje( estado, descript, nom_us , FK_ms ) 
         VALUES (?, ?, ?, ?)";
         $insert = $this->db->prepare($sql);

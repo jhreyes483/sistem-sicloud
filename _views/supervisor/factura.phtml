@@ -6,7 +6,7 @@ if ($this->factura['response_status'] == 'OK') {
 } else {
     die('<div class="col-lg-6 col-12 col-sm-12 shadow-lg mx-auto text-center my-4  alert alert-danger alert-dismissible fade show" role="alert">
     <h1>' . $this->factura['response_msg'] . '</h1> <br> 
-    <a class="btn btn-outline-primary"  href="#">Seleccione otra factura</a>
+    <a class="btn btn-outline-primary"  href="'.BASE_URL.'supervisor/consFactura'.' ">Seleccione otra factura</a>
     </div>');
 }
 

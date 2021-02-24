@@ -2,11 +2,11 @@
 
     $aP= [];
     $aMenu['A'][1]         = [ 'USUARIOS'];
-    $aMenu['A'][1][1]      = [ 'Admin Solisitud', ''.BASE_URL.'admin/ControlUsuarios', 'S1S'];
+    $aMenu['A'][1][1]      = [ 'Admin Solicitud', ''.BASE_URL.'admin/ControlUsuarios', 'S1S'];
     $aMenu['A'][1][2]      = [ 'Acumulación de puntos',''.BASE_URL.'comercial/puntos', 'S1P'];
-    $aMenu['A'][1][3]      = [ 'Facturacion',''.BASE_URL.'factura', 'S1F'];  
+    $aMenu['A'][1][3]      = [ 'Facturación',''.BASE_URL.'factura', 'S1F'];  
     $aMenu['A'][1][4]      = [ 'Consulta factura', ''.BASE_URL.'supervisor/consFactura', 'S1CF'];
-    $aMenu['A'][1][5]      = [ 'Inf Ventas Facturacion', ''.BASE_URL.'supervisor/facturas', 'S1FF'];
+    $aMenu['A'][1][5]      = [ 'Inf Ventas Facturación', ''.BASE_URL.'supervisor/facturas', 'S1FF'];
     $aMenu['A'][1][6]      = [ 'Inf Ventas general', ''.BASE_URL.'supervisor/infvrango', 'INVF'];
     $aMenu['A'][1][7]      = [ 'Solicitudes "comercial"',''.BASE_URL.'comercial/solicitud', 'FGRJIO'];
     $aMenu['A'][1][8]      = [ 'Solicitudes "proveedor"',''.BASE_URL.'proveedor/pedidos','WSGOS1C'];

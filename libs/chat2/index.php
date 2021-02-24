@@ -9,8 +9,7 @@ header('location:' . BASE_URL . 'index');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +17,6 @@ header('location:' . BASE_URL . 'index');
     <link href="<?= RUTAS_APP['ruta_css'] ?>jav.css" rel="stylesheet" type="text/css" />
     <link href="<?= RUTAS_APP['ruta_css'] ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= RUTAS_APP['ruta_css'] ?>font-awesome.css" rel="stylesheet" type="text/css" />
-
     <link href="<?= RUTAS_APP['ruta_css'] ?>chat.css" rel="stylesheet" type="text/css" />
     <script src="<?= RUTAS_APP['ruta_js'] ?>fontawasome-ico.js"></script>
 </thead>
