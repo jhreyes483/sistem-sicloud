@@ -11,6 +11,7 @@ class facturaController extends Controller{
     }
     //
     public function index(){
+    //    $this->db->updateCantidadProducto([($d[2] - $d[3] ) ,$aP[3]]);  
            if( isset($_POST)){
         if( isset($_REQUEST['accion'])){
             switch ($_REQUEST['accion']) {
@@ -204,6 +205,7 @@ class facturaController extends Controller{
     }
     // Factucion
     public function m_facturar($a , $tipo = 1){
+        $ID = $this->session['usuario']['ID_us'];
         switch ($tipo) {
         // Facturacion interna
             case 0:
@@ -220,7 +222,10 @@ class facturaController extends Controller{
                 ];
                 //
                $id_factura = $this->db->facturar($aF);
+
+             
                 //
+                Controller::ver($a);
                 foreach( $a as $i => $d ){
                     $aP= [
                         $id_factura,
@@ -230,11 +235,16 @@ class facturaController extends Controller{
                         $_POST['ID'],
                         $_POST['FK_tipo_doc']
                     ];
-                    //
-                    $ID = $this->session['usuario']['ID_us'];
-                 $r =   $this->db->insertaProductosFactura($aP);
-                 //Controller::ver($aP, 1,1);
-                 if($r){
+                    // 14-03-2012 se implementa descuento de porducto en innventario // by J.R.N
+                   $r1= $this->db->updateCantidadProducto([($d[2] - $d[3] ) ,$aP[1]]);  
+                   if($r1){
+                    
+                    $r2 =   $this->db->insertaProductosFactura($aP);
+                   }
+                 //   Controller::ver($r1, 1,1,'result');
+                
+                
+                 if($r2){
                      $_SESSION['venta']  = null;
                      $_SESSION['message']= "Facturo de manera exitosa, factura numero  $id_factura";
                      $_SESSION['color']  = "success";

@@ -26,12 +26,46 @@ class contableController extends Controller{
          $this->_view->total['numeros']= ('$' . number_format(($t), 0, ',', '.')) ;
          $this->_view->total['letras'] =  ucfirst(strtolower( $o->convertirCifrasEnLetras($t))); 
       }
-      
       $this->_view->renderizar('index');
    }
 
 
+   // fk_motivo // select
+   // `id_pago`, `hora`, `fecha`, `actor`, `estado`, `valor`, `fk_user`, `fk_egreso`, `fk_motivo`
+
+
+   public function dilipagos(){
+      if( isset($_POST) && !empty($_POST) ){
+         $o = new Session();
+         $s = $o->desencriptaSesion();
+     
+         $b  = $this->db->insertPago([
+            date('h:i'),
+            date('Y-m-d'),
+            $this->getSql('actor'),
+            $this->getSql('estado'),
+            $this->getSql('valor'),
+            ($s['usuario']['ID_us']),
+            $this->getSql('fk_egreso'),
+            $this->getSql('fk_motivo'),
+         ]);
+         if($b){
+            $_SESSION['message'] = 'Inserto datos';
+            $_SESSION['color'] = 'success';
+         }else{
+            $_SESSION['message'] = 'Error al insertar pago';
+            $_SESSION['color'] = 'danger';
+         }
+      }
+      $tmp =  $this->db->verMotivPago();
+      foreach( $tmp as $d ) $this->_view->motivo[$d[0]] = $d[1];
+      $tmp = $this->db->verEgreso();
+      foreach( $tmp as $d ) $this->_view->egreso[$d[0]] = $d[1];
+      $this->_view->status = [ 1 =>'Cancelado',2 => 'Deuda' ];
+      $this->_view->renderizar('dilipagos');
+   }
+
 }
 
 
-?>
+?>.
