@@ -51,10 +51,10 @@ class contableController extends Controller{
          ]);
          if($b){
             $_SESSION['message'] = 'Inserto datos';
-            $_SESSION['color'] = 'success';
+            $_SESSION['color']   = 'success';
          }else{
             $_SESSION['message'] = 'Error al insertar pago';
-            $_SESSION['color'] = 'danger';
+            $_SESSION['color']   = 'danger';
          }
       }
       $tmp =  $this->db->verMotivPago();

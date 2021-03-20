@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL & ~E_NOTICE);
 
 class userController extends Controller{
 
@@ -40,23 +43,53 @@ class userController extends Controller{
    public function misdatos(){
       $obj = new Session;
       $s = $obj->desencriptaSesion();
-      if( isset($_POST) && count($_POST) != 0){
-        $b = $this->db->insertUpdateUsuarioCliente([
-            $s['usuario']['ID_us'],
-            $this->getSql('nom1'),
-            $this->getSql('nom2'),
-            $this->getSql('ape1'),
-            $this->getSql('ape2'),
-            $this->getSql('fecha'),
-            $this->getSql('correo')
-         ]);
-
-         if($b){
-            $_SESSION['message'] = 'Acutalizo sus datos'; $_SESSION['color'] = 'success'; 
+      if( isset($_POST) && count($_POST) != 0 ){
+         if( !isset($_POST['accion'])){
+            $b = $this->db->insertUpdateUsuarioCliente([
+               $s['usuario']['ID_us'],
+               $this->getSql('nom1'),
+               $this->getSql('nom2'),
+               $this->getSql('ape1'),
+               $this->getSql('ape2'),
+               $this->getSql('fecha'),
+               $this->getSql('correo')
+            ]);
+   
+            if($b){
+               $_SESSION['message'] = 'Acutalizo sus datos'; $_SESSION['color'] = 'success'; 
+            }else{
+               $_SESSION['message'] = 'Error al actualizar'; $_SESSION['color'] = 'danger'; 
+            }
          }else{
-            $_SESSION['message'] = 'Error al actualizar'; $_SESSION['color'] = 'danger'; 
+            if( isset($_POST['accion'])  &&  $_POST['accion'] == 'insertDir'  ){
+            //   Controller::ver('dd',1,1,'ENTRO');
+
+               $b = $this->db->inserDireccion([
+                  $this->getSql('direccion'),
+                  $s['usuario']['ID_us'],
+                  $s['usuario']['FK_tipo_doc'],
+                  'NULL',
+                  $this->getSql('barrio'),
+                  $this->getSql('localidad'),
+                  $this->getSql('nom_ciudad'),
+               ]);
+               if($b){
+                  $_SESSION['message'] = 'Registro dirección '.$this->getSql('direccion') ; $_SESSION['color'] = 'success'; 
+               }else{
+                  $_SESSION['message'] = 'Error al registrar dirección'; $_SESSION['color'] = 'danger'; 
+               }
+               // INSERT INTO `direccion` (`dir`, `CF_us`, `CF_tipo_doc`, `CF_rut`, `FK_barrio`, `FK_Localidad`, `FK_Ciudad`) VALUES (NULL, 'Calle 30 sur No 21 45', '1', 'CC', NULL, '1', '1', '1');
+              
+            }
          }
+
+
+
+
       }
+
+      
+
 
       
 

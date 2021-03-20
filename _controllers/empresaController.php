@@ -128,7 +128,7 @@ class empresaController extends Controller{
                $_SESSION['message']    = "Actualizo empresa";
                $_SESSION['color']      = "success";
             }else{
-               $_SESSION['message'] = "Error, no actualizo empresa";
+               $_SESSION['message']    = "Error, no actualizo empresa";
                $_SESSION['color']      = "danger";
             }
             $this->redireccionar('empresa');

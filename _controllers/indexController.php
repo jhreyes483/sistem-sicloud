@@ -220,6 +220,8 @@ class indexController extends Controller {
    }
    //
    public function registro(){
+      //Controller::ver($_POST,1,1);
+      
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['jquery-1.9.0','login'] );
       $d =  $this->db->verDocumeto();

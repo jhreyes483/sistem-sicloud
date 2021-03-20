@@ -933,54 +933,6 @@ public function eliminarErrorLog($id)
     }
 }   
 //==================================================
-//CCONTABLE
-public function verMotivPago(){
-   $sql = "SELECT * FROM `motivo_pago`";
-   $stm = $this->db->prepare($sql);
-   $stm->execute();
-   return $stm->fetchAll();
-}
-
-public function verEgreso(){
-   $sql = "SELECT * FROM `tipo_egreso`";
-   $stm = $this->db->prepare($sql);
-   $stm->execute();
-   return $stm->fetchAll();
-}
-
-public function insertPago(array $a ){
-   $sql = 'INSERT INTO pago 
-   ( hora, fecha, actor, estado, valor, fk_user, fk_egreso, fk_motivo)
-   VALUES (?,?,?,?,?,?,?,?)';
-   $stm = $this->db->prepare($sql);
-   $stm->bindValue(1,$a[0], PDO::PARAM_STR);
-   $stm->bindValue(2,$a[1], PDO::PARAM_STR);
-   $stm->bindValue(3,$a[2], PDO::PARAM_STR);
-   $stm->bindValue(4,$a[3], PDO::PARAM_INT);
-   $stm->bindValue(5,$a[4], PDO::PARAM_INT);
-   $stm->bindValue(6,$a[5], PDO::PARAM_STR);
-   $stm->bindValue(7,$a[6], PDO::PARAM_INT);
-   $stm->bindValue(8,$a[7], PDO::PARAM_INT);
-   return  $stm->execute();
-}
-
-
-
-public function updateCantidadProducto(array $a){
-   // 0 = stok, 1 = id_producto
-   controller::ver($a,0);
-   $sql = 
-   'UPDATE producto 
-   SET stok_prod = :stok
-   WHERE ID_prod = :id';
-   $consulta = $this->db->prepare($sql);
-   $consulta->bindValue(':stok' ,$a[0], PDO::PARAM_INT);
-   $consulta->bindValue(':id', $a[1], PDO::PARAM_STR);
-   return $consulta->execute();
-}
-
-
-
 //==================================================
 //CFACTURA
 
@@ -997,6 +949,7 @@ public function updateCantidadProducto(array $a){
       $consulta->bindValue(":pago", $a[5], PDO::PARAM_INT);
       $result = $consulta->execute();
       $id = $this->db->lastInsertId();
+
       return $id;
    }
 
@@ -1985,6 +1938,21 @@ public function eliminarTelefono($idg){
    }
 }
 
+   public function inserDireccion($a){
+    //  Controller::ver($a,1,'eee');
+      $sql = 'INSERT INTO direccion (dir, CF_us, CF_tipo_doc, CF_rut, FK_barrio, FK_Localidad, FK_Ciudad) 
+      VALUES (?,?,?,?,?,?,?)';
+         $stm= $this->db->prepare($sql);
+         $stm->bindValue( 1, $a[0], PDO::PARAM_STR );
+         $stm->bindValue( 2, $a[1], PDO::PARAM_STR );
+         $stm->bindValue( 3, $a[2], PDO::PARAM_STR );
+         $stm->bindValue( 4, NULL, PDO::PARAM_INT );
+         $stm->bindValue( 5, $a[4], PDO::PARAM_INT );
+         $stm->bindValue( 6, $a[5], PDO::PARAM_INT );
+         $stm->bindValue( 7, $a[6], PDO::PARAM_INT );
+         return  $stm->execute();
+   }
+
    //CDIRECCION
    public function verDirecciones($consdicion = ''){
       $sql = 'SELECT U.ID_us , U.nom1 , U.ape1 , R.nom_rol , D.dir
@@ -2106,12 +2074,35 @@ public function eliminarTelefono($idg){
 
 
 
+   public function verMotivPago(){
+      $sql = "SELECT * FROM `motivo_pago`";
+      $stm = $this->db->prepare($sql);
+      $stm->execute();
+      return $stm->fetchAll();
+   }
 
+   public function verEgreso(){
+      $sql = "SELECT * FROM `tipo_egreso`";
+      $stm = $this->db->prepare($sql);
+      $stm->execute();
+      return $stm->fetchAll();
+   }
 
-
-
-
-
+   public function insertPago(array $a ){
+      $sql = 'INSERT INTO pago 
+      ( hora, fecha, actor, estado, valor, fk_user, fk_egreso, fk_motivo)
+      VALUES (?,?,?,?,?,?,?,?)';
+      $stm = $this->db->prepare($sql);
+      $stm->bindValue(1,$a[0], PDO::PARAM_STR);
+      $stm->bindValue(2,$a[1], PDO::PARAM_STR);
+      $stm->bindValue(3,$a[2], PDO::PARAM_STR);
+      $stm->bindValue(4,$a[3], PDO::PARAM_INT);
+      $stm->bindValue(5,$a[4], PDO::PARAM_INT);
+      $stm->bindValue(6,$a[5], PDO::PARAM_STR);
+      $stm->bindValue(7,$a[6], PDO::PARAM_INT);
+      $stm->bindValue(8,$a[7], PDO::PARAM_INT);
+      return  $stm->execute();
+   }
 
     // Notificacion de nueva cuenta a admin--------------------------------------------
     // se lamaba notInsertUsuarioAdmin
